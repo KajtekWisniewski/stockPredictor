@@ -2,3 +2,16 @@
   height: 500px;
   padding: 1em;
 }
+
+.returnWidget {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10em;
+}
+
+.predictionForm {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
