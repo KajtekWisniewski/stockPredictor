@@ -1,0 +1,32 @@
+.navbar {
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  text-transform: none;
+  font-weight: bold;
+  color: inherit;
+  gap: 1em;
+  background-color: inherit;
+  justify-content: space-around;
+  padding: 0.5em;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  border-bottom: 1px solid #70c9d9;
+}
+
+.linkStyle {
+  color: #70c9d9;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.generalStyles {
+  z-index: 0;
+}

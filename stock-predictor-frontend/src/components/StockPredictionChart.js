@@ -39,7 +39,7 @@ const StockPredictionChart = ({ stock, startDate, endDate, days }) => {
     return (
       <div>
         <ClipLoader
-          color="#000000"
+          color="#256168"
           size={150}
           aria-label="Loading Spinner"
           data-testid="loader"

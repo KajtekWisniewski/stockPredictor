@@ -1,0 +1,58 @@
+.formStyle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: inherit;
+  padding: 1em;
+  margin-left: -2em;
+  gap: 0.5em;
+  border: 2px solid #256168;
+  label {
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  select {
+    padding: 0.25em 3.85em;
+    box-shadow: none;
+    border: 1px solid #256168;
+    background-color: inherit;
+  }
+  input {
+    padding: 0.25em 1.75em;
+    box-shadow: none;
+    border: 1px solid #256168;
+    background-color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  input:hover {
+    background-color: #25616852;
+  }
+  select:hover {
+    background-color: #25616852;
+  }
+  button {
+    background-color: inherit;
+    padding: 0.5em 3em;
+    border: 3px solid #256168;
+  }
+  button:hover {
+    background-color: #25616852;
+  }
+  .rangeStyle {
+    input {
+      padding: 0;
+    }
+    label {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

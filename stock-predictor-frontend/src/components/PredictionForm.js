@@ -14,8 +14,8 @@ const PredictionForm = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <form className={styles.formStyle} onSubmit={handleSubmit}>
+      <div className={styles.selectStyle}>
         <label>
           Ticker:
           <select value={ticker} onChange={(e) => setTicker(e.target.value)}>
@@ -32,7 +32,7 @@ const PredictionForm = ({ onSubmit }) => {
           </select>
         </label>
       </div>
-      <div>
+      <div className={styles.dateStyle}>
         <label>
           Start Date:
           <input
@@ -42,7 +42,7 @@ const PredictionForm = ({ onSubmit }) => {
           />
         </label>
       </div>
-      <div>
+      <div className={styles.dateStyle}>
         <label>
           End Date:
           <input
@@ -52,7 +52,7 @@ const PredictionForm = ({ onSubmit }) => {
           />
         </label>
       </div>
-      <div>
+      <div className={styles.rangeStyle}>
         <label>
           Days:
           <input
