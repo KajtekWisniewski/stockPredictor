@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 import styles from './componentStyles.module.scss';
 
 const PredictionForm = ({ onSubmit }) => {
+  const currentDate = new Date().toJSON().slice(0, 10);
   const [ticker, setTicker] = useState('AAPL');
   const [startDate, setStartDate] = useState('2024-01-01');
-  const [endDate, setEndDate] = useState('2024-06-17');
+  const [endDate, setEndDate] = useState(currentDate);
   const [days, setDays] = useState(30);
 
   const handleSubmit = (e) => {

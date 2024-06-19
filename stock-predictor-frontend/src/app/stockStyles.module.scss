@@ -16,3 +16,19 @@
   flex-direction: column;
   background-color: white;
 }
+
+.mainPage {
+  margin-top: 12em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcomePage {
+  padding: 1em;
+}
+.linkStyle {
+  padding: 1em;
+  text-decoration: underline;
+}

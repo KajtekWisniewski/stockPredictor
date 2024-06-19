@@ -11,13 +11,13 @@ const NavBar = ({}) => {
           <h2>stocks</h2>
         </Link>
         <Link className={styles.linkStyle} href={`/prediction/`}>
-          <h2>predictions</h2>
+          <h2>predict</h2>
         </Link>
         <Link className={styles.linkStyle} href={`/`}>
           <Image src="/chart_icon.png" width={75} height={75} alt="site logo" />
         </Link>
         <Link className={styles.linkStyle} href={`/docs/`}>
-          <h2>documentation</h2>
+          <h2>docs&emsp;&ensp;</h2>
         </Link>
         <Link className={styles.linkStyle} href={`/account/`}>
           <h2>account</h2>

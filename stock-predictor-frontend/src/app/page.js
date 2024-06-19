@@ -1,10 +1,16 @@
 import Image from 'next/image';
-import styles from './page.module.css';
+import styles from './stockStyles.module.scss';
 
 export default function Home() {
   return (
-    <div className="mainPage">
-      <div className="WidgetContainer">Hello world</div>
+    <div>
+      <div className={styles.mainPage}>
+        <h1 className={styles.welcomePage}>Welcome to Stock Predictor</h1>
+        <Image src="/bar_icon.png" width={150} height={150} alt="site logo" />
+        <h3 className={styles.welcomePage}>
+          Use LSTM models to predict given stock return
+        </h3>
+      </div>
     </div>
   );
 }
