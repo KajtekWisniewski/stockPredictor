@@ -51,7 +51,7 @@ def train_and_save_model(stock):
 
     X, y = create_sequences(scaled_log_returns, seq_length)
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, shuffle=False)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, shuffle=True)
 
     model = Sequential()
     model.add(LSTM(100, return_sequences=True, input_shape=(seq_length, 1)))
