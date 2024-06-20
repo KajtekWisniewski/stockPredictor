@@ -8,6 +8,7 @@ namespace AuthService.Configuration
         public AutoMapperProfiles()
         {
             CreateMap<Stock, StockDto>();
+            CreateMap<UpsertStockDto, Stock>();
     }
     }
 }
