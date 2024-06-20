@@ -11,6 +11,7 @@
   "dependencies": {
     "@react-keycloak/web": "^3.4.0",
     "axios": "^1.7.2",
+    "cryptr": "^6.3.0",
     "formik": "^2.4.6",
     "jwt-decode": "^4.0.0",
     "keycloak-js": "^24.0.5",
