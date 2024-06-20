@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  flask-api:
+    build:
+      context: ./model
+    ports:
+      - '5000:5000'
+    volumes:
+      - ./model:/app
+    environment:
+      FLASK_ENV: development
+
+  nextjs-app:
+    build:
+      context: ./stock-predictor-frontend
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    depends_on:
+      - flask-api
