@@ -1,6 +1,55 @@
-version: '3.8'
-
 services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0.4
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      DB_VENDOR: postgres
+      DB_ADDR: keycloak-postgres
+      DB_PORT: 5432
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: password
+    ports:
+      - '8080:8080'
+    command: start-dev --verbose
+    depends_on:
+      - keycloak-postgres
+    networks:
+      - keycloak-net
+
+  keycloak-postgres:
+    image: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: password
+    networks:
+      - keycloak-net
+    volumes:
+      - keycloak-db-data:/var/lib/postgresql/data
+
+  backend-db:
+    image: postgres
+    environment:
+      POSTGRES_DB: api
+      POSTGRES_USER: api
+      POSTGRES_PASSWORD: password
+    command: -p 5433
+    ports:
+      - '5433:5433'
+    volumes:
+      - backend-db-data:/var/lib/postgresql/data
+
+  backend:
+    build: ./AuthService/AuthService
+    ports:
+      - '4001:8080'
+    depends_on:
+      - backend-db
+
   flask-api:
     build:
       context: ./model
@@ -19,3 +68,11 @@ services:
       - '3000:3000'
     depends_on:
       - flask-api
+      - backend
+
+volumes:
+  backend-db-data:
+  keycloak-db-data:
+
+networks:
+  keycloak-net:
