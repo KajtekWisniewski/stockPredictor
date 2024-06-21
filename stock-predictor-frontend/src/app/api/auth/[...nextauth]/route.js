@@ -4,16 +4,19 @@ import { jwtDecode } from 'jwt-decode';
 import { encrypt } from '@/components/keycloak/encryption';
 
 async function refreshAccessToken(token) {
-  const resp = await fetch(`${process.env.REFRESH_TOKEN_URL}`, {
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({
-      client_id: process.env.DEMO_FRONTEND_CLIENT_ID,
-      client_secret: process.env.DEMO_FRONTEND_CLIENT_SECRET,
-      grant_type: 'refresh_token',
-      refresh_token: token.refresh_token
-    }),
-    method: 'POST'
-  });
+  const resp = await fetch(
+    `${process.env.NEXT_CONTAINER_KEYCLOAK_ENDPOINT}/realms/myrealm/protocol/openid-connect/token`,
+    {
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        client_id: process.env.DEMO_FRONTEND_CLIENT_ID,
+        client_secret: process.env.DEMO_FRONTEND_CLIENT_SECRET,
+        grant_type: 'refresh_token',
+        refresh_token: token.refresh_token
+      }),
+      method: 'POST'
+    }
+  );
   const refreshToken = await resp.json();
   if (!resp.ok) throw refreshToken;
 
@@ -30,9 +33,19 @@ async function refreshAccessToken(token) {
 export const authOptions = {
   providers: [
     KeycloakProvider({
+      wellKnown: undefined,
+      jwks_endpoint: `${process.env.NEXT_CONTAINER_KEYCLOAK_ENDPOINT}/realms/myrealm/protocol/openid-connect/certs`,
       clientId: `${process.env.DEMO_FRONTEND_CLIENT_ID}`,
       clientSecret: `${process.env.DEMO_FRONTEND_CLIENT_SECRET}`,
-      issuer: `${process.env.AUTH_ISSUER}`
+      issuer: `${process.env.NEXT_LOCAL_KEYCLOAK_URL}/realms/myrealm`,
+      authorization: {
+        params: {
+          scope: 'openid email profile'
+        },
+        url: `${process.env.NEXT_LOCAL_KEYCLOAK_URL}/realms/myrealm/protocol/openid-connect/auth`
+      },
+      token: `${process.env.NEXT_CONTAINER_KEYCLOAK_ENDPOINT}/realms/myrealm/protocol/openid-connect/token`,
+      userinfo: `${process.env.NEXT_CONTAINER_KEYCLOAK_ENDPOINT}/realms/myrealm/protocol/openid-connect/userinfo`
     })
   ],
 

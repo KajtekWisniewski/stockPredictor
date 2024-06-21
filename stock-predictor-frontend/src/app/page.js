@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styles from './stockStyles.module.scss';
+import PutRequestComponent from '@/components/test';
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
         <h3 className={styles.welcomePage}>
           Use LSTM models to predict given stock return
         </h3>
+        <PutRequestComponent></PutRequestComponent>
       </div>
     </div>
   );

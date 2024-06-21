@@ -1,3 +1,5 @@
+'use client';
+
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../api/auth/[...nextauth]/route';
 import axios from 'axios';
@@ -6,9 +8,10 @@ import { SetDynamicRoute } from '@/components/keycloak/setDynamicRoute';
 import styles from '../stockStyles.module.scss';
 
 async function getAllStocks() {
-  const url = `${process.env.DEMO_BACKEND_URL}/stocks`;
+  const url = 'http://:4001/stocks';
 
   let accessToken = await getAccessToken();
+  console.log(accessToken);
 
   try {
     const resp = await axios.get(url, {
