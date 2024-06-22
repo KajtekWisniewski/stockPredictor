@@ -43,12 +43,12 @@ namespace AuthService.Controllers
 
             if (roles is null) return Unauthorized();
 
-            if (roles.Contains("admin"))
-            {
-                Console.WriteLine("admin");
-                var result = await _repository.GetById<StockDto>(id);
-                return result is null ? NotFound() : Ok(result);
-            }
+            // if (roles.Contains("admin"))
+            // {
+            //     Console.WriteLine("admin");
+            //     var result = await _repository.GetById<StockDto>(id);
+            //     return result is null ? NotFound() : Ok(result);
+            // }
 
             if (roles.Contains("user"))
             {
@@ -88,7 +88,7 @@ namespace AuthService.Controllers
 
             if (roles is null) return Unauthorized();
 
-            if (roles.Contains("user")) return Unauthorized();
+            if (!roles.Contains("admin")) return Unauthorized();
 
             if (roles.Contains("admin"))
             {
