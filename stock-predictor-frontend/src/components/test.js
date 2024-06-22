@@ -12,7 +12,9 @@ const PutRequestComponent = () => {
     setLoading(true);
     setError('');
     try {
-      const response = await axios.put(`http://localhost:4001/stocks`);
+      const response = await axios.put(
+        `${process.env.NEXT_PUBLIC_DEMO_BACKEND_URL}/stocks`
+      );
       setResponseMessage(response.data.message); // Adjust based on your API response structure
     } catch (err) {
       setError('Error sending PUT request');

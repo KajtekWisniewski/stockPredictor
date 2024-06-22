@@ -20,12 +20,15 @@ const FetchStocksComponent = () => {
         const accessToken = sessionResponse.data.accessToken;
 
         // Fetch the stock data using the access token
-        const response = await axios.get('http://localhost:4001/stocks', {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + accessToken
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_DEMO_BACKEND_URL}/stocks`,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + accessToken
+            }
           }
-        });
+        );
 
         setStocks(response.data); // Adjust based on your API response structure
       } else {

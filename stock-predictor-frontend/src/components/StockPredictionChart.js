@@ -15,7 +15,7 @@ const StockPredictionChart = ({ stock, startDate, endDate, days }) => {
     setData(null);
 
     axios
-      .post(`http://127.0.0.1:5000/api/predict`, {
+      .post(`${process.env.NEXT_PUBLIC_DEMO_BACKEND_URL_2}/api/predict`, {
         ticker: stock,
         start_date: startDate,
         end_date: endDate,
