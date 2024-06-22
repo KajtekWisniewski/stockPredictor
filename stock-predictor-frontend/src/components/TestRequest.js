@@ -27,7 +27,7 @@ const PutRequestComponent = () => {
   return (
     <div>
       <button onClick={sendPutRequest} disabled={loading}>
-        {loading ? 'Loading...' : 'Send PUT Request'}
+        {loading ? 'Loading...' : 'Send PUT Request to test the api'}
       </button>
       {responseMessage && <div>Response: {responseMessage}</div>}
       {error && <div style={{ color: 'red' }}>{error}</div>}

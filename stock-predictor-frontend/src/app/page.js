@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import styles from './stockStyles.module.scss';
-import PutRequestComponent from '@/components/test';
+import PutRequestComponent from '@/components/TestRequest';
 
 export default function Home() {
   return (

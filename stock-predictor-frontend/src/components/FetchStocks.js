@@ -1,12 +1,31 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import AdminRoute from './keycloak/AdminRoute';
 
-const FetchStocksComponent = () => {
+const FetchStocks = () => {
   const [stocks, setStocks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false);
+  
+  useEffect(() => {
+    const checkAdminStatus = async () => {
+      try {
+        const sessionResponse = await axios.get('/api/fetch-admin-token');
+        if (sessionResponse.status === 200 && sessionResponse.data.accessToken) {
+          setIsAdmin(true);
+        } else {
+          setIsAdmin(false);
+        }
+      } catch (err) {
+        console.error('Error checking admin status', err);
+      }
+    };
+
+    checkAdminStatus();
+  }, []);
 
   const sendGetRequest = async () => {
     setLoading(true);
@@ -42,6 +61,38 @@ const FetchStocksComponent = () => {
     }
   };
 
+  const handleDelete = async (id) => {
+    setLoading(true);
+    setError('');
+
+    try {
+      const adminSessionResponse = await axios.get('/api/fetch-admin-token');
+
+      if (adminSessionResponse.status === 200 && adminSessionResponse.data.accessToken) {
+        const adminAccessToken = adminSessionResponse.data.accessToken;
+
+        await axios.delete(
+          `${process.env.NEXT_PUBLIC_DEMO_BACKEND_URL}/stocks/${id}`,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + adminAccessToken
+            }
+          }
+        );
+
+        setStocks(stocks.filter(stock => stock.id !== id));
+      } else {
+        setError('You do not have permission to delete this content.');
+      }
+    } catch (err) {
+      setError('Error deleting stock data');
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div>
       <button onClick={sendGetRequest} disabled={loading}>
@@ -58,6 +109,7 @@ const FetchStocksComponent = () => {
                 <th>Date of Prediction</th>
                 <th>Predicted Return</th>
                 <th>Days Predicted</th>
+                {isAdmin && <th>Admin Action</th>}
               </tr>
             </thead>
             <tbody>
@@ -68,6 +120,11 @@ const FetchStocksComponent = () => {
                   <td>{stock.dateOfPrediction}</td>
                   <td>{stock.predictedReturn}</td>
                   <td>{stock.daysPredicted}</td>
+                  {isAdmin && <td>
+                    <button onClick={() => handleDelete(stock.id)} disabled={loading}>
+                      Delete
+                    </button>
+                  </td> }
                 </tr>
               ))}
             </tbody>
@@ -79,4 +136,4 @@ const FetchStocksComponent = () => {
   );
 };
 
-export default FetchStocksComponent;
+export default FetchStocks;

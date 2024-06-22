@@ -17,6 +17,7 @@ const SendStocks = ({ predictionParams }) => {
 
       if (sessionResponse.status === 200 && sessionResponse.data.accessToken) {
         const accessToken = sessionResponse.data.accessToken;
+        //console.log(accessToken)
 
         // Prepare data according to the StockDto structure
         const stocksData = {
