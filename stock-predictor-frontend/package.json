@@ -9,13 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-keycloak/web": "^3.4.0",
     "axios": "^1.7.2",
+    "cryptr": "^6.3.0",
     "formik": "^2.4.6",
+    "jwt-decode": "^4.0.0",
+    "keycloak-js": "^24.0.5",
     "lightweight-charts": "^4.1.4",
-    "next": "14.2.3",
-    "react": "^18",
+    "next": "^14.2.4",
+    "next-auth": "^4.24.7",
+    "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
-    "react-dom": "^18",
+    "react-dom": "^18.3.1",
     "react-spinners": "^0.13.8",
     "sass": "^1.77.4",
     "yup": "^1.4.0"

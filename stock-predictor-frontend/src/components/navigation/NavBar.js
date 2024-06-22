@@ -2,8 +2,13 @@
 import Link from 'next/link';
 import styles from './NavBar.module.scss';
 import Image from 'next/image';
+import AuthStatus from '../keycloak/authStatus';
+import { useSession } from 'next-auth/react';
+import React, { useState, useEffect } from 'react';
 
 const NavBar = ({}) => {
+  const { data: session, status } = useSession();
+
   return (
     <>
       <nav className={styles.navbar}>
@@ -19,9 +24,17 @@ const NavBar = ({}) => {
         <Link className={styles.linkStyle} href={`/docs/`}>
           <h2>docs&emsp;&ensp;</h2>
         </Link>
-        <Link className={styles.linkStyle} href={`/account/`}>
-          <h2>account</h2>
-        </Link>
+
+        <>
+          {status === 'unauthenticated' ? (
+            <></>
+          ) : (
+            <Link className={styles.linkStyle} href={`http://localhost:3000/community`}>
+              <h2>community tab</h2>
+            </Link>
+          )}
+        </>
+        <AuthStatus></AuthStatus>
       </nav>
     </>
   );

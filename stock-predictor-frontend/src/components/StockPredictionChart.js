@@ -3,6 +3,8 @@ import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
 import axios from 'axios';
 import { ClipLoader } from 'react-spinners';
+import SendStocks from './SendStocks';
+import PrivateRoute from './keycloak/PrivateRoute';
 
 const StockPredictionChart = ({ stock, startDate, endDate, days }) => {
   const [data, setData] = useState(null);
@@ -15,7 +17,7 @@ const StockPredictionChart = ({ stock, startDate, endDate, days }) => {
     setData(null);
 
     axios
-      .post(`http://127.0.0.1:5000/api/predict`, {
+      .post(`${process.env.NEXT_PUBLIC_DEMO_BACKEND_URL_2}/api/predict`, {
         ticker: stock,
         start_date: startDate,
         end_date: endDate,
@@ -88,6 +90,20 @@ const StockPredictionChart = ({ stock, startDate, endDate, days }) => {
     <div>
       <h1>Predicted Cumulative Return: {cumulative_return_percentage.toFixed(2)}%</h1>
       <Line data={chartData} />
+      {chartData && (
+        <PrivateRoute>
+          <SendStocks
+            predictionParams={{
+              stock,
+              startDate,
+              cumulative_return_percentage_number: Number(
+                cumulative_return_percentage.toFixed(2)
+              ),
+              days
+            }}
+          />
+        </PrivateRoute>
+      )}
     </div>
   );
 };
