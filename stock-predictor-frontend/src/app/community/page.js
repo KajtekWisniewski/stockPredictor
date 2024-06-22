@@ -32,10 +32,8 @@ export default function CommunityPage() {
 
   return (
     <div className={styles.mainPage}>
-      <div>
         <div>this is a protected site. only logged in users have acces to it. It also contains an admin panel only available to admins.</div>
         <button onClick={checkIfAdmin}>Check if Admin</button>
-      </div>
       {showInfo && (
         <>
           {isAdmin ? (

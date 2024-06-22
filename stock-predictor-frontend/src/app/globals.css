@@ -93,6 +93,34 @@ a {
   text-decoration: none;
 }
 
+button {
+  background-color: inherit;
+  padding: 0.5em 3em;
+  border: 3px solid #256168;
+}
+
+button:hover {
+  background-color: #25616852;
+}
+
+table {
+  width: 100%;
+  border-collapse:collapse;
+  border: 2px solid #256168
+}
+
+th {
+  border: 2px solid #256168; /* Border color */
+  padding: 8px;
+  text-align: left;
+}
+
+td {
+  border: 2px solid #256168; /* Border color */
+  padding: 8px;
+  text-align: left;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
