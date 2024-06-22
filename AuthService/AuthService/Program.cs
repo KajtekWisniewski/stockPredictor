@@ -14,7 +14,7 @@ namespace AuthService
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public async static Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -60,9 +60,9 @@ namespace AuthService
                 .AllowAnyMethod()
                 .WithOrigins("http://localhost:3000"));
 
-            /*using var scope = app.Services.CreateScope();
+            using var scope = app.Services.CreateScope();
 			var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-			if ((await db.Database.GetPendingMigrationsAsync()).Any()) await db.Database.MigrateAsync();*/
+			if ((await db.Database.GetPendingMigrationsAsync()).Any()) await db.Database.MigrateAsync();
 
             //app.UseHttpsRedirection();
 

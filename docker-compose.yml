@@ -13,14 +13,19 @@ services:
       DB_PASSWORD: password
       KC_LOG_LEVEL: INFO
       ROOT_LOGLEVEL: INFO
+      KEYCLOAK_IMPORT: /opt/keycloak/data/import/realm-export.json
     ports:
       - '8080:8080'
-    command: start-dev --verbose
+    command:
+      - start-dev
+      - --import-realm
     depends_on:
       - keycloak-postgres
     networks:
       - keycloak-net
       - spa-net
+    volumes:
+      - ./realm-export.json:/opt/keycloak/data/import/realm-export.json
 
   keycloak-postgres:
     image: postgres
@@ -60,13 +65,13 @@ services:
       - backend-net
       - keycloak-net
 
-  flask-api:
+  flask-imitation:
     build:
-      context: ./model
+      context: ./imitation
     ports:
       - '5000:5000'
     volumes:
-      - ./model:/app
+      - ./imitation:/app
     environment:
       FLASK_ENV: development
 
@@ -92,7 +97,7 @@ services:
       - keycloak-net
       - spa-net
     depends_on:
-      - flask-api
+      - flask-imitation
       - backend
       - keycloak
 
