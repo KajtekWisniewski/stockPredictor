@@ -29,7 +29,7 @@ namespace AuthService
             builder.Services.AddKeycloakWebApiAuthentication(builder.Configuration,
                     option =>
                     {
-                        option.TokenValidationParameters.ValidIssuer = "http://localhost:8080/realms/myrealm";
+                        option.TokenValidationParameters.ValidIssuer = "http://localhost:30002/realms/myrealm";
                     }
                 );
 
@@ -61,7 +61,7 @@ namespace AuthService
                 options
                 .AllowAnyHeader()
                 .AllowAnyMethod()
-                .WithOrigins("http://localhost:3000"));
+                .WithOrigins("http://localhost:30001"));
 
             using var scope = app.Services.CreateScope();
 			var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();

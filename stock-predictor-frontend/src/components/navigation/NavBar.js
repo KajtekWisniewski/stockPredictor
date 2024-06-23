@@ -11,16 +11,18 @@ const NavBar = ({}) => {
 
   return (
     <>
+            
       <nav className={styles.navbar}>
+      <Link className={styles.linkStyle} href={`/`}>
+          <Image src="/chart_icon.png" width={75} height={75} alt="site logo" />
+        </Link>
         <Link className={styles.linkStyle} href={`/stocks/`}>
           <h2>stocks</h2>
         </Link>
         <Link className={styles.linkStyle} href={`/prediction/`}>
           <h2>predict</h2>
         </Link>
-        <Link className={styles.linkStyle} href={`/`}>
-          <Image src="/chart_icon.png" width={75} height={75} alt="site logo" />
-        </Link>
+
         <Link className={styles.linkStyle} href={`/docs/`}>
           <h2>docs&emsp;&ensp;</h2>
         </Link>
@@ -29,7 +31,7 @@ const NavBar = ({}) => {
           {status === 'unauthenticated' ? (
             <></>
           ) : (
-            <Link className={styles.linkStyle} href={`http://localhost:3000/community`}>
+            <Link className={styles.linkStyle} href={`/community/`}>
               <h2>community tab</h2>
             </Link>
           )}

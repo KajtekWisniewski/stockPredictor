@@ -6,7 +6,7 @@ from functions import *
 #python -m flask --debug --app api/server.py run
 
 app = Flask(__name__)
-cors = CORS(app)
+cors = CORS(app, resources={r"/*": {"origins": "http://localhost:30001"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/api/predict", methods=['POST'])
