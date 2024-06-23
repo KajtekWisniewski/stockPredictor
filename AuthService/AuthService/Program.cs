@@ -8,7 +8,7 @@ using AuthService.Repository.Contracts;
 using Keycloak.AuthServices.Authentication;
 using Keycloak.AuthServices.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace AuthService
 {
@@ -46,6 +46,9 @@ namespace AuthService
                 options.UseNpgsql(builder.Configuration.GetConnectionString("Postgres"));
             });
 
+            builder.Services.AddHealthChecks()
+                .AddDbContextCheck<ApplicationDbContext>("ApplicationDbContext");
+
 
             var app = builder.Build();
 
@@ -65,6 +68,7 @@ namespace AuthService
 			if ((await db.Database.GetPendingMigrationsAsync()).Any()) await db.Database.MigrateAsync();
 
             //app.UseHttpsRedirection();
+            app.MapHealthChecks("/health");
 
             app.UseAuthentication();
 
