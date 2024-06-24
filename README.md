@@ -21,9 +21,9 @@ całości kontekstu aplikacja funkcjonalnie jest taka sama. Szczegóły dotyczą
 - Przejdź do katalogu stockPredictor
 - Odpal Docker Desktop
 - (wersja docker): **_docker-compose up --build_** / (wersja kubernetes): **_docker-compose build_**, po zbudowaniu: **_kubectl apply -f k8s_**
-- przejść do http://localhost:3000(docker) lub http://localhost:30001(kubernetes) w przeglądarce
+- przejść do <http://localhost:3000>(docker) lub <http://localhost:30001>(kubernetes) w przeglądarce
 - zarejestruj się, aby uzyskać funkcje użytkownika
-  jeśli chcesz mieć funkcje administratora, musisz przejść do http://localhost:8080(docker) lub http://localhost:30002(kubernetes), zalogować się do keycloak z loginem: **admin**, hasło: **admin**
+  jeśli chcesz mieć funkcje administratora, musisz przejść do <http://localhost:8080>(docker) lub <http://localhost:30002>(kubernetes), zalogować się do keycloak z loginem: **admin**, hasło: **admin**
   zmienić realm na myrealm, przypisać role do konta użytkownika lub utworzyć nowego użytkownika admin -> z ról ogólnych przypisać rolę admin, a z ról klientów (frontend-client, api-client) przypisać admina z obu.
 
 ## Funkcjonalności
