@@ -1,4 +1,6 @@
-# PL - Projekt Łączony na bezp web (gałąź "main") i technologie chmurowe (gałąź "k8s") - Stock Predictor
+# PL - Stock Predictor
+
+(ENG version below)
 
 Projekt akademicki do przewidywania zwrotu z akcji przy użyciu modeli LSTM następujących firm:
 APPLE, GOOGLE, MICROSOFT, NVIDIA, AMAZON, META, TSMC, TESLA, WALMART, VISA.
